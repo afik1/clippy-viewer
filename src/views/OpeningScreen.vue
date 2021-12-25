@@ -19,10 +19,12 @@
           <h4 class="small-text">allready have an account?</h4>
           <hr class="divider" />
         </div>
-        <Button @click="showPopup = true">
+        <Button @click="showPopup()">
           <h3 class="btn-label">Get Started!</h3>
         </Button>
-        <!-- <FileAdd @parseFinished="fileParsed()">Load Clippings!</FileAdd> -->
+        <FileAdd class="file-input" @parseFinished="fileParsed()"
+          >Load Clippings!</FileAdd
+        >
       </div>
     </div>
     <!-- <div class="signin-container">
@@ -37,15 +39,25 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Button from '@/components/Button.vue'
-// import FileAdd from '../components/AddClippingsFile.vue'
+import FileAdd from '../components/AddClippingsFile.vue'
+import { mapActions, mapState } from 'vuex'
+
 // import AlertBox from '../components/AlertBox.vue'
 
 export default defineComponent({
   name: 'SignIn',
-  components: { Button },
+  components: { Button, FileAdd },
+  computed: {
+    ...mapState('alert', ['alertText']),
+  },
   methods: {
+    ...mapActions('alert', ['showErrorMessage']),
     fileParsed() {
       this.$router.push({ name: 'Library' })
+    },
+    showPopup() {
+      this.showErrorMessage('msg hahaha')
+      setTimeout(() => console.log(this.alertText), 4000)
     },
   },
 })
@@ -94,5 +106,9 @@ export default defineComponent({
 
 .divider {
   border-top: 3px solid lightgrey;
+}
+
+.file-input {
+  margin-top: 2.4rem;
 }
 </style>
