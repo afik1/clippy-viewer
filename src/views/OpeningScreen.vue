@@ -7,32 +7,29 @@
       </Button>
     </div>
     <div class="opening-container">
-      <h1 class="opening-title">Using your kindle to it's fullest potential</h1>
-      <div class="opening-paragraph">
-        Clippy is a web application designed to asist kindle users with viewing
-        their book highlights in a more orgenized way and to give them the
-        ability to share and save these importent ideas. signing up is not
-        mandatory just upload your text file and get going!
-      </div>
-      <div>
-        <div>
-          <h4 class="small-text">allready have an account?</h4>
-          <hr class="divider" />
+      <div class="opening-info">
+        <h1 class="opening-title">
+          Using your kindle to it's fullest potential
+        </h1>
+        <div class="opening-paragraph">
+          View your clippings in an orgenized library and enjoy the same
+          highlights again and again<br />on mobile and pc
         </div>
-        <Button @click="showPopup()">
-          <h3 class="btn-label">Get Started!</h3>
-        </Button>
-        <FileAdd class="file-input" @parseFinished="fileParsed()"
-          >Load Clippings!</FileAdd
-        >
+        <div class="opening-btns">
+          <h4 class="small-text">allready have an account?</h4>
+          <div class="divider"></div>
+          <div class="btn-row">
+            <Button @click="showPopup()">
+              <h3 class="btn-label">Get Started!</h3>
+            </Button>
+            <FileAdd :resetLibrary="true" @parseFinished="fileParsed()"
+              ><h3 class="btn-label">Load Clippings!</h3></FileAdd
+            >
+          </div>
+        </div>
       </div>
+      <div class="opening-images"></div>
     </div>
-    <!-- <div class="signin-container">
-    <div class="error-row">
-      <AlertBox class="alert-box"></AlertBox>
-    </div>
-    
-  </div> -->
   </div>
 </template>
 
@@ -56,8 +53,7 @@ export default defineComponent({
       this.$router.push({ name: 'Library' })
     },
     showPopup() {
-      this.showErrorMessage('msg hahaha')
-      setTimeout(() => console.log(this.alertText), 4000)
+      console.log('popup')
     },
   },
 })
@@ -65,35 +61,37 @@ export default defineComponent({
 
 <style scoped>
 .opening-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-content: center;
   justify-content: flex-start;
-  text-align: center;
   height: 100%;
-  padding: 10rem 5rem 5rem 5rem;
+  padding: 10rem 5rem 5rem 7rem;
 }
 
 .opening-paragraph {
-  font-size: 4.4rem;
-  padding: 0 9.6rem 0 9.6rem;
+  font-size: 2.8rem;
   margin-bottom: 6.4rem;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.2;
+  padding: 0 6rem 0 2rem;
 }
 
 .opening-title {
   font-size: 6.2rem;
-  margin-bottom: 6.4rem;
+  margin-bottom: 4.8rem;
+  line-height: 8rem;
 }
 
 .small-text {
-  margin-bottom: 3.2rem;
+  margin: 0 0 1rem 2rem;
+  font-weight: 500;
   color: #1d3557;
 }
 
 .btn-label {
-  font-weight: 700;
+  font-weight: 400;
+  font-size: 1.8rem;
 }
 
 .signup-bar {
@@ -105,10 +103,33 @@ export default defineComponent({
 }
 
 .divider {
-  border-top: 3px solid lightgrey;
+  border-top: 2px solid cadetblue;
+  width: 60%;
+  margin: 0 0 1rem 1rem;
 }
 
-.file-input {
-  margin-top: 2.4rem;
+.opening-info {
+  padding: 0 5rem 0 5rem;
+}
+
+.opening-images {
+  background-color: cadetblue;
+}
+
+.opening-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 3.2rem 0 0 0;
+}
+
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  margin: 1rem 0 0 1rem;
+  width: 105%;
 }
 </style>
