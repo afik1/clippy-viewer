@@ -25,7 +25,7 @@ export default defineComponent({
     ...mapState(['booksList']),
   },
   methods: {
-    ...mapActions(['setBooksList']),
+    ...mapActions(['library/setBooksList']),
     parseFile(fileText: string) {
       let booksList: Array<Book> = []
 
@@ -36,13 +36,10 @@ export default defineComponent({
           booksList = mergeLibrarys(this.booksList, booksList)
         }
 
-        this.setBooksList(booksList)
+        this['library/setBooksList'](booksList)
         this.$emit('parseFinished')
-
-        // this.$store.dispatch(
-        //   'showErrorMessage',
-        //   'Sorry error while parsing file :))'
-        // )
+      } else {
+        // this.showErrorMessage('Sorry file format not valid...  :(')
       }
     },
     checkFileValidity() {
@@ -60,29 +57,20 @@ export default defineComponent({
 }
 
 .input-btn {
-  display: block;
-  position: relative;
-  width: 180px;
-  height: 40px;
-  border-radius: 25px;
-  background: linear-gradient(40deg, #f0727c, #f3a846);
-  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #1d3557;
-  font-weight: bold;
+  border-radius: 20px;
+  padding: 1rem 3rem 1rem 3rem;
+  background-color: #ec9a9a;
+  border: 0;
+  box-shadow: 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  height: fit-content;
   transition: transform 0.2s ease-out;
+  font-size: 2.4rem;
+  color: rgb(49, 49, 49);
 }
 
 .input-btn:hover,
 .input-btn:focus {
   transform: scale(1.02);
-}
-
-.input-btn:focus {
-  outline: 1px solid #000;
-  outline: -webkit-focus-ring-color auto 2px;
 }
 </style>

@@ -1,4 +1,4 @@
-import { Book, ClippingDetails } from '@/store/interfaces'
+import { Book, ClippingDetails, Clipping } from '@/store/interfaces'
 
 const compareNames = (
   firstObject: Array<string>,
@@ -52,39 +52,40 @@ const removeEmpty = (clippingsArray: Array<string>) => {
 
 export function parseClippingsFile(text: string): Array<Book> {
   const parsedText = removeEmpty(text.split('=========='))
-  const clippingsArray = [] as Array<Book>
-  const clippingObject = {} as Book
-  let currBook = ''
+  const booksArray = [] as Array<Book>
+  let book = {} as Book
+  let currBookName = ''
 
   if (parsedText.length >= 1) {
     // Selecting first book in list
-    currBook = parsedText[0][0]
-    clippingObject.bookName = currBook
-    clippingObject.clippings = []
-    clippingObject.clippings.push({
+    currBookName = parsedText[0][0]
+    book.bookName = currBookName
+    book.clippings = []
+    book.clippings.push({
       details: parseDetails(parsedText[0][1]),
       text: parsedText[0][2],
     })
 
     // Iterating over array and saving all the clippings in order
     for (let index = 1; index < parsedText.length; index++) {
-      if (parsedText[index][0] !== currBook) {
-        clippingsArray.push(clippingObject)
-        currBook = parsedText[index][0]
-        clippingObject.bookName = currBook
-        clippingObject.clippings = []
+      if (parsedText[index][0] !== currBookName) {
+        booksArray.push(book)
+        currBookName = parsedText[index][0]
+        book = {} as Book
+        book.bookName = currBookName
+        book.clippings = []
       }
 
-      clippingObject.clippings.push({
+      book.clippings.push({
         details: parseDetails(parsedText[index][1]),
         text: parsedText[index][2],
-      })
+      } as Clipping)
     }
 
-    clippingsArray.push(clippingObject)
+    booksArray.push(book)
   }
 
-  return clippingsArray
+  return booksArray
 }
 
 export function createClippingsFile(clippingsParsed: Array<Book>): void {

@@ -60,3 +60,10 @@ Default: 9px
 Medium: 11px
 
 --- 07 WHITESPACE
+
+--- text
+
+Clippy is a web application designed to asist kindle users with
+viewing their book highlights in a more orgenized way and to give them
+the ability to share and save these importent ideas. signing up is not
+mandatory just upload your text file and get going!

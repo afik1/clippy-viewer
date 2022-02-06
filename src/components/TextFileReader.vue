@@ -1,9 +1,7 @@
 <template>
   <div>
-    <div class="styled-btn">
-      <input type="file" id="file" ref="file" class="file" @change="onSelect" />
-      <label for="file"><slot></slot></label>
-    </div>
+    <input type="file" id="file" ref="file" class="file" @change="onSelect" />
+    <label for="file"><slot></slot></label>
   </div>
 </template>
 
