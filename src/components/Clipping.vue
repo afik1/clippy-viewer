@@ -1,23 +1,22 @@
 <template>
-  <div class="book-container">
-    <div class="book-header">{{ book.bookName }}</div>
-    <div class="divider"></div>
-    <div class="book-stats">
-      <div class="book-stat">{{ book.clippings.length }} Clippings</div>
-      <div class="book-stat">Last updated - 25/10/2022</div>
-      <div class="book-stat">Auther - George</div>
+  <div class="clipping-container">
+    <div class="clipping-text">
+      {{ clipping.text }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Book } from '@/store/interfaces'
+import { Clipping } from '@/store/interfaces'
 
 export default defineComponent({
+  mounted() {
+    console.log(this.clipping)
+  },
   props: {
-    book: {
-      type: Object as () => Book,
+    clipping: {
+      type: Object as () => Clipping,
       required: true,
     },
   },
@@ -25,10 +24,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.book-container {
+.clipping-container {
   background-color: whitesmoke;
   border-radius: 10px;
-  padding: 1rem;
+  padding: 2rem;
   cursor: pointer;
   transition: transform 0.4s ease-out;
   display: flex;
@@ -38,10 +37,15 @@ export default defineComponent({
   width: 100%;
 }
 
-.book-container:hover {
+.clipping-container:hover {
   transform: translate(0, -4px);
 }
 
+.clipping-text {
+  font-size: 2rem;
+  font-weight: 600;
+}
+/* 
 .divider {
   border-top: 2px solid #555;
   width: 95%;
@@ -72,5 +76,5 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   gap: 2rem;
-}
+} */
 </style>

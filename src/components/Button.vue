@@ -1,29 +1,40 @@
 <template>
-  <button class="btn" @click="showPopup = true">
+  <button
+    class="btn"
+    :style="{ 'background-color': color }"
+    @click="showPopup = true"
+  >
     <slot></slot>
   </button>
 </template>
 
-<script>
-export default {}
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  props: {
+    color: {
+      type: String,
+      default: '#ffffff',
+    },
+  },
+})
 </script>
 
-<style>
+<style scoped>
 .btn {
   border-radius: 20px;
   padding: 1rem 3rem 1rem 3rem;
-  background-color: #ec9a9a;
   color: rgb(49, 49, 49);
   font-family: 'Rubik', sans-serif;
   border: 0;
-  box-shadow: 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.2rem 1rem 0.1rem rgba(80, 80, 80, 0.2);
   cursor: pointer;
   height: fit-content;
-  transition: transform 0.5s ease-out;
+  transition: 0.5s;
 }
 
-.btn:hover,
-.btn:focus {
-  transform: translateY(2);
+.btn:hover {
+  transform: translateY(-2px);
 }
 </style>

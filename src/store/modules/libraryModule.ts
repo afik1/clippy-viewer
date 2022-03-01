@@ -23,6 +23,7 @@ const LibraryModule = {
       context.commit('SET_BOOKS', booksList)
     },
     setCurrentBook(context: any, currentBook: Book) {
+      console.log(currentBook)
       context.commit('SET_CURRENT_BOOK', currentBook)
     },
   },

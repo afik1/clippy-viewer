@@ -1,13 +1,14 @@
 <template>
-  <div>
+  <div class="file-reader">
     <input type="file" id="file" ref="file" class="file" @change="onSelect" />
     <label for="file"><slot></slot></label>
   </div>
 </template>
 
 <script lang="js">
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'TextFileReader',
   methods: {
     onSelect() {
@@ -29,14 +30,18 @@ export default {
       }
     },
   },
-}
+})
 </script>
 
-<style>
+<style scoped>
 .file {
   opacity: 0;
   width: 0.1px;
   height: 0.1px;
   position: absolute;
+}
+
+.file-reader {
+  cursor: pointer;
 }
 </style>
