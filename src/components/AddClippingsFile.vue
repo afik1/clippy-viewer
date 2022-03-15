@@ -1,17 +1,17 @@
 <template>
   <div class="input-container">
-    <div class="input-btn">
+    <button class="btn" @click="trigger">
       <TextFileReader @file-read="parseFile"><slot></slot></TextFileReader>
-    </div>
+    </button>
   </div>
 </template>
 
 <script lang="ts">
-import { parseClippingsFile, mergeLibrarys } from '../utils'
 import { defineComponent } from 'vue'
+import { mapState, mapActions } from 'vuex'
+import { parseClippingsFile, mergeLibrarys } from '../utils'
 import { Book } from '@/store/interfaces'
 import TextFileReader from '@/components/TextFileReader.vue'
-import { mapState, mapActions } from 'vuex'
 
 export default defineComponent({
   name: 'AddClippingsFile',
@@ -25,13 +25,12 @@ export default defineComponent({
     ...mapState(['booksList']),
   },
   methods: {
-    ...mapActions(['library/setBooksList']),
+    ...mapActions(['library/setBooksList', 'alert/showErrorMessage']),
     parseFile(fileText: string) {
       let booksList: Array<Book> = []
+      booksList = parseClippingsFile(fileText)
 
-      if (this.checkFileValidity()) {
-        booksList = parseClippingsFile(fileText)
-
+      if (Array.isArray(booksList) && booksList.length > 0) {
         if (!this.resetLibrary) {
           booksList = mergeLibrarys(this.booksList, booksList)
         }
@@ -39,7 +38,7 @@ export default defineComponent({
         this['library/setBooksList'](booksList)
         this.$emit('parseFinished')
       } else {
-        // this.showErrorMessage('Sorry file format not valid...  :(')
+        this['alert/showErrorMessage']('file is empty :(')
       }
     },
     checkFileValidity() {
@@ -56,21 +55,19 @@ export default defineComponent({
   justify-content: center;
 }
 
-.input-btn {
+.btn {
   border-radius: 20px;
   padding: 1rem 3rem 1rem 3rem;
-  background-color: #ec9a9a;
+  color: rgb(49, 49, 49);
+  font-family: 'Rubik', sans-serif;
   border: 0;
-  box-shadow: 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.2rem 1rem 0.1rem rgba(80, 80, 80, 0.2);
   cursor: pointer;
   height: fit-content;
-  transition: transform 0.2s ease-out;
-  font-size: 2.4rem;
-  color: rgb(49, 49, 49);
+  transition: 0.5s;
 }
 
-.input-btn:hover,
-.input-btn:focus {
-  transform: scale(1.02);
+.btn:hover {
+  transform: translateY(-2px);
 }
 </style>

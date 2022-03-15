@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <div class="signup-bar">
       <h1 class="clippy-logo">Clippy</h1>
       <Button @click="showPopup = true">
@@ -22,13 +22,13 @@
             <Button @click="showPopup()">
               <h3 class="btn-label">Get Started!</h3>
             </Button>
-            <FileAdd :resetLibrary="true" @parseFinished="fileParsed()"
-              ><h3 class="btn-label">Load Clippings!</h3></FileAdd
-            >
+            <FileAdd :resetLibrary="true" @parseFinished="fileParsed()">
+              <h3 class="btn-label">Enter your clippings</h3>
+            </FileAdd>
           </div>
         </div>
       </div>
-      <div class="opening-images"></div>
+      <div class="opening-image"></div>
     </div>
   </div>
 </template>
@@ -37,7 +37,7 @@
 import { defineComponent } from 'vue'
 import Button from '@/components/Button.vue'
 import FileAdd from '../components/AddClippingsFile.vue'
-import { mapActions, mapState } from 'vuex'
+import { mapState } from 'vuex'
 
 // import AlertBox from '../components/AlertBox.vue'
 
@@ -48,12 +48,11 @@ export default defineComponent({
     ...mapState('alert', ['alertText']),
   },
   methods: {
-    ...mapActions('alert', ['showErrorMessage']),
     fileParsed() {
       this.$router.push({ name: 'Library' })
     },
     showPopup() {
-      console.log('popup')
+      console.log('sign in popup')
     },
   },
 })
@@ -65,7 +64,6 @@ export default defineComponent({
   grid-template-columns: 1fr 1fr;
   align-content: center;
   justify-content: flex-start;
-  height: 100%;
   padding: 10rem 5rem 5rem 7rem;
 }
 
@@ -99,7 +97,7 @@ export default defineComponent({
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 3rem 8rem 2rem 8rem;
+  margin: 3rem 8rem 0 8rem;
 }
 
 .divider {
@@ -109,10 +107,13 @@ export default defineComponent({
 }
 
 .opening-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   padding: 0 5rem 0 5rem;
 }
 
-.opening-images {
+.opening-image {
   background-color: cadetblue;
 }
 
@@ -131,5 +132,11 @@ export default defineComponent({
   gap: 2rem;
   margin: 1rem 0 0 1rem;
   width: 105%;
+}
+
+.main-container {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
 }
 </style>

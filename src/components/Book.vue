@@ -1,5 +1,5 @@
 <template>
-  <div class="book-box">
+  <div class="book-container">
     <div class="book-header">{{ book.bookName }}</div>
     <div class="divider"></div>
     <div class="book-stats">
@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { PropType, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 import { Book } from '@/store/interfaces'
 
 export default defineComponent({
@@ -25,9 +25,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.book-box {
-  width: 30rem;
-  height: 30rem;
+.book-container {
   background-color: whitesmoke;
   border-radius: 10px;
   padding: 1rem;
@@ -36,9 +34,11 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  height: 100%;
+  width: 100%;
 }
 
-.book-box:hover {
+.book-container:hover {
   transform: translate(0, -4px);
 }
 
@@ -59,14 +59,13 @@ export default defineComponent({
 
 .book-header {
   font-weight: 700;
-  font-size: 2.4rem;
+  font-size: 2rem;
   color: #555;
   text-align: center;
   text-overflow: ellipsis;
   overflow: hidden;
-  max-height: 3.6em;
+  max-height: 1.8em;
   line-height: 1.8em;
-  word-wrap: break-word;
 }
 
 .book-stats {

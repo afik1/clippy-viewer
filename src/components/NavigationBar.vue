@@ -1,5 +1,6 @@
 <template>
   <div class="sidebar">
+    <div class="user"></div>
     <div class="link" v-for="(route, index) in routes" :key="index">
       <img
         class="link-icon"
@@ -45,15 +46,17 @@ export default defineComponent({
 .sidebar {
   height: 100%;
   width: 20rem;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
-  padding-top: 10rem;
-  padding: 10rem 1rem 1rem;
+  z-index: 100;
+  overflow-x: hidden;
+  padding: 5rem 1rem 1rem;
   background-color: #457b9d;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   box-shadow: 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.2);
 }
 
@@ -62,11 +65,14 @@ export default defineComponent({
   justify-content: center;
   justify-content: space-between;
   margin-top: 2rem;
+  border: 3px solid whitesmoke;
+  border-radius: 6px;
 }
 
 .link-text {
   padding: 1rem;
   font-size: 2rem;
+  font-weight: 500;
   display: block;
   cursor: pointer;
   color: whitesmoke;

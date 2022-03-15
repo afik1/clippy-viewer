@@ -55,14 +55,16 @@ export function parseClippingsFile(text: string): Array<Book> {
   const booksArray = [] as Array<Book>
   let book = {} as Book
   let currBookName = ''
+  let currentDetails = {} as ClippingDetails
 
   if (parsedText.length >= 1) {
     // Selecting first book in list
     currBookName = parsedText[0][0]
     book.bookName = currBookName
     book.clippings = []
+    currentDetails = parseDetails(parsedText[0][1])
     book.clippings.push({
-      details: parseDetails(parsedText[0][1]),
+      details: currentDetails,
       text: parsedText[0][2],
     })
 
@@ -76,10 +78,16 @@ export function parseClippingsFile(text: string): Array<Book> {
         book.clippings = []
       }
 
-      book.clippings.push({
-        details: parseDetails(parsedText[index][1]),
-        text: parsedText[index][2],
-      } as Clipping)
+      try {
+        currentDetails = parseDetails(parsedText[index][1])
+
+        book.clippings.push({
+          details: currentDetails,
+          text: parsedText[index][2],
+        } as Clipping)
+      } catch (exception) {
+        console.log('an error occured in parse detail')
+      }
     }
 
     booksArray.push(book)
