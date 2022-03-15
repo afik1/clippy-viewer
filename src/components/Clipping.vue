@@ -32,7 +32,7 @@ export default defineComponent({
   transition: transform 0.4s ease-out;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   height: 100%;
   width: 100%;
 }
@@ -44,37 +44,7 @@ export default defineComponent({
 .clipping-text {
   font-size: 2rem;
   font-weight: 600;
-}
-/* 
-.divider {
-  border-top: 2px solid #555;
-  width: 95%;
-  margin: 1rem 0 1rem 0;
-}
-
-.book-stat {
-  color: #555;
-  font-weight: 400;
-  padding: 0.5rem;
-  border-radius: 8px;
-  background-color: lightsteelblue;
-  border: 1px solid #555;
-}
-
-.book-header {
-  font-weight: 700;
-  font-size: 2rem;
-  color: #555;
-  text-align: center;
-  text-overflow: ellipsis;
   overflow: hidden;
-  max-height: 1.8em;
-  line-height: 1.8em;
+  text-overflow: ellipsis;
 }
-
-.book-stats {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-} */
 </style>

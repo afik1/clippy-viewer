@@ -1,9 +1,5 @@
 <template>
-  <button
-    class="btn"
-    :style="{ 'background-color': color }"
-    @click="showPopup = true"
-  >
+  <button class="btn" :style="{ 'background-color': color }">
     <slot></slot>
   </button>
 </template>

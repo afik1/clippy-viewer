@@ -36,6 +36,15 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.tool-bar {
+  width: 100%;
+  height: fit-content;
+  padding: 1.5rem 0 1.5rem 0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  background-color: lightgray;
+}
+
 .header {
   font-size: 3.2rem;
   font-weight: 700;
@@ -48,7 +57,8 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  padding: 1.5rem 2rem 1rem 2rem;
+  width: 100%;
+  padding: 2rem 2.2rem 2rem 2.2rem;
 }
 
 .books {
@@ -56,7 +66,8 @@ export default defineComponent({
   width: auto;
   height: 100%;
   min-height: 0;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   padding: 3rem;
@@ -68,10 +79,17 @@ export default defineComponent({
   align-items: center;
 }
 
-.tool-bar {
-  width: 100%;
-  height: fit-content;
-  padding: 1rem 0 1rem 0;
+.books::-webkit-scrollbar {
+  width: 10px;
+}
+
+.books::-webkit-scrollbar-track {
+  background: rgb(122, 122, 122);
+}
+
+.books::-webkit-scrollbar-thumb {
   background-color: lightgray;
+  border-radius: 20px;
+  border: 3px solid lightgray;
 }
 </style>

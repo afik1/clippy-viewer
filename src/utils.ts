@@ -1,5 +1,4 @@
 import { Book, ClippingDetails, Clipping } from '@/store/interfaces'
-import { createLogger } from 'vuex'
 
 const compareNames = (
   firstObject: Array<string>,
