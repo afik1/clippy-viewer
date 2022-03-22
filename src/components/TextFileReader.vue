@@ -1,7 +1,7 @@
 <template>
   <div class="file-reader">
-    <input type="file" id="file" ref="file" class="file" @change="onSelect" />
-    <label for="file"><slot></slot></label>
+    <input type="file" id="file" ref="file" class="reader" @change="onSelect" />
+    <label class="file-reader-label" for="file"><slot></slot></label>
   </div>
 </template>
 
@@ -34,7 +34,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.file {
+.reader {
   opacity: 0;
   width: 0.1px;
   height: 0.1px;
@@ -42,6 +42,10 @@ export default defineComponent({
 }
 
 .file-reader {
+  cursor: pointer;
+}
+
+.file-reader-label {
   cursor: pointer;
 }
 </style>

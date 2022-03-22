@@ -6,29 +6,36 @@
         <h4 class="btn-label">Sign Up!</h4>
       </Button>
     </div>
-    <div class="opening-container">
-      <div class="opening-info">
-        <h1 class="opening-title">
-          Using your kindle to it's fullest potential
-        </h1>
-        <div class="opening-paragraph">
-          View your clippings in an orgenized library and enjoy the same
-          highlights again and again<br />on mobile and pc
-        </div>
-        <div class="opening-btns">
-          <h4 class="small-text">allready have an account?</h4>
-          <div class="divider"></div>
-          <div class="btn-row">
-            <Button @click="showPopup()">
-              <h3 class="btn-label">Get Started!</h3>
-            </Button>
-            <FileAdd :resetLibrary="true" @parseFinished="fileParsed()">
-              <h3 class="btn-label">Enter your clippings</h3>
-            </FileAdd>
+    <div class="opening-wrapper">
+      <div class="opening-container">
+        <div class="opening-info">
+          <h1 class="opening-title">
+            Using your kindle to it's fullest potential
+          </h1>
+          <div class="opening-paragraph">
+            View your clippings in an orgenized library and enjoy the same
+            highlights again and again<br />on mobile and pc
+          </div>
+          <div class="opening-btns">
+            <h4 class="small-text">allready have an account?</h4>
+            <div class="divider"></div>
+            <div class="btn-row">
+              <Button @click="showPopup">
+                <h3 class="btn-label">Get Started!</h3>
+              </Button>
+              <Popup
+                class="popup"
+                v-show="isModalVisible"
+                @close="closePopup"
+              ></Popup>
+              <FileAdd :resetLibrary="true" @parseFinished="fileParsed()">
+                <h3 class="btn-label">Enter your clippings</h3>
+              </FileAdd>
+            </div>
           </div>
         </div>
+        <div class="opening-image"></div>
       </div>
-      <div class="opening-image"></div>
     </div>
   </div>
 </template>
@@ -37,13 +44,18 @@
 import { defineComponent } from 'vue'
 import Button from '@/components/Button.vue'
 import FileAdd from '../components/AddClippingsFile.vue'
-import { mapState } from 'vuex'
-
+import Popup from '../components/Popup.vue'
 // import AlertBox from '../components/AlertBox.vue'
+import { mapState } from 'vuex'
 
 export default defineComponent({
   name: 'SignIn',
-  components: { Button, FileAdd },
+  components: { Button, FileAdd, Popup },
+  data() {
+    return {
+      isModalVisible: false,
+    }
+  },
   computed: {
     ...mapState('alert', ['alertText']),
   },
@@ -52,19 +64,29 @@ export default defineComponent({
       this.$router.push({ name: 'Library' })
     },
     showPopup() {
-      console.log('sign in popup')
+      this.isModalVisible = true
+    },
+    closePopup() {
+      this.isModalVisible = false
     },
   },
 })
 </script>
 
 <style scoped>
+.opening-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .opening-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-content: center;
   justify-content: flex-start;
-  padding: 10rem 5rem 5rem 7rem;
+  padding: 0 5rem 5rem 7rem;
 }
 
 .opening-paragraph {
@@ -111,6 +133,7 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-around;
   padding: 0 5rem 0 5rem;
+  height: 100%;
 }
 
 .opening-image {
@@ -121,7 +144,8 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin: 3.2rem 0 0 0;
+  justify-self: flex-end;
+  margin: 5.2rem 0 0 0;
 }
 
 .btn-row {
@@ -138,5 +162,9 @@ export default defineComponent({
   display: flex;
   flex-flow: column;
   height: 100vh;
+}
+
+.popup {
+  position: absolute;
 }
 </style>

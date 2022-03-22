@@ -17,8 +17,13 @@
         v-for="(clipping, key) in selectedBook.clippings"
         :key="key"
         :clipping="clipping"
+        @click="displayClipping(clipping.text)"
       ></Clipping>
     </div>
+    <Popup class="popup" v-show="isModalVisible" @close="closePopup">
+      <template v-slot:header>{{ selectedBook.bookName }}</template>
+      <template v-slot:body> {{ currentClipping }} </template>
+    </Popup>
   </div>
 </template>
 
@@ -27,22 +32,36 @@ import { defineComponent } from 'vue'
 import { mapState } from 'vuex'
 import Clipping from '@/components/Clipping.vue'
 import IconButton from '@/components/IconButton.vue'
+import Popup from '../components/Popup.vue'
 
 export default defineComponent({
   components: {
     Clipping,
     IconButton,
+    Popup,
   },
   data() {
     return {
       iconNames: ['grid-1', 'grid-2', 'grid-3'],
       currentViewIndex: 2,
+      isModalVisible: false,
+      currentClipping: '',
     }
   },
   methods: {
     changeGrid() {
       if (this.currentViewIndex === 2) this.currentViewIndex = 0
       else this.currentViewIndex = this.currentViewIndex + 1
+    },
+    displayClipping(text: string) {
+      this.currentClipping = text
+      this.showPopup()
+    },
+    showPopup() {
+      this.isModalVisible = true
+    },
+    closePopup() {
+      this.isModalVisible = false
     },
   },
   computed: {

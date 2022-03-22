@@ -11,9 +11,6 @@ import { defineComponent } from 'vue'
 import { Clipping } from '@/store/interfaces'
 
 export default defineComponent({
-  mounted() {
-    console.log(this.clipping)
-  },
   props: {
     clipping: {
       type: Object as () => Clipping,
@@ -42,7 +39,8 @@ export default defineComponent({
 }
 
 .clipping-text {
-  font-size: 2rem;
+  font-size: 2.2rem;
+  line-height: 1.15;
   font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
