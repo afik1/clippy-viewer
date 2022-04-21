@@ -22,16 +22,17 @@ export default defineComponent({
 
 <style scoped>
 .clipping-container {
-  background-color: whitesmoke;
-  border-radius: 10px;
-  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 1px 2px 10px 1px #99a3b340;
+  border-radius: 6px;
   cursor: pointer;
   transition: transform 0.4s ease-out;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   height: 100%;
   width: 100%;
+  padding: 2rem;
+  justify-content: flex-start;
 }
 
 .clipping-container:hover {
@@ -40,7 +41,8 @@ export default defineComponent({
 
 .clipping-text {
   font-size: 2.2rem;
-  line-height: 1.15;
+  line-height: 1.3;
+  word-spacing: 0.1rem;
   font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;

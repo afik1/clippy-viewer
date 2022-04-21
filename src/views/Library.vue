@@ -40,13 +40,13 @@ export default defineComponent({
   width: 100%;
   height: fit-content;
   padding: 1.5rem 0 1.5rem 0;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   background-color: lightgray;
 }
 
 .header {
-  font-size: 3.2rem;
+  font-size: 2.8rem;
   font-weight: 700;
   color: #555;
   margin: 0 0 0 2rem;
@@ -62,7 +62,7 @@ export default defineComponent({
 }
 
 .books {
-  background-color: lightslategray;
+  background-color: #ebecf0;
   width: auto;
   height: 100%;
   min-height: 0;
@@ -85,6 +85,7 @@ export default defineComponent({
 
 .books::-webkit-scrollbar-track {
   background: rgb(122, 122, 122);
+  border-bottom-right-radius: 6px;
 }
 
 .books::-webkit-scrollbar-thumb {

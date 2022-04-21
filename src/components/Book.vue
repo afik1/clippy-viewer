@@ -4,8 +4,8 @@
     <div class="divider"></div>
     <div class="book-stats">
       <div class="book-stat">{{ book.clippings.length }} Clippings</div>
-      <div class="book-stat">Last updated - 25/10/2022</div>
-      <div class="book-stat">Auther - George</div>
+      <div class="book-stat">Last updated - {{ latestClipping }}</div>
+      <!-- <div class="book-stat">Get from api?</div> -->
     </div>
   </div>
 </template>
@@ -21,13 +21,29 @@ export default defineComponent({
       required: true,
     },
   },
+  computed: {
+    latestClipping(): string {
+      let sortedClippings = this.book.clippings
+
+      sortedClippings = sortedClippings
+        .sort((a, b) => a.details.date.valueOf() - b.details.date.valueOf())
+        .reverse()
+
+      return sortedClippings[0].details.date.toLocaleDateString('en-US', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      })
+    },
+  },
 })
 </script>
 
 <style scoped>
 .book-container {
-  background-color: whitesmoke;
-  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 1px 2px 10px 1px #99a3b340;
+  border-radius: 6px;
   padding: 1rem;
   cursor: pointer;
   transition: transform 0.4s ease-out;
@@ -53,7 +69,7 @@ export default defineComponent({
   font-weight: 400;
   padding: 0.5rem;
   border-radius: 8px;
-  background-color: lightsteelblue;
+  background-color: rgb(160, 177, 188);
   border: 1px solid #555;
 }
 
@@ -71,6 +87,7 @@ export default defineComponent({
 .book-stats {
   display: flex;
   flex-direction: column;
+  text-align: center;
   gap: 2rem;
 }
 </style>

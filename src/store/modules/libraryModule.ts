@@ -11,6 +11,7 @@ const LibraryModule = {
       state.booksList = books
     },
     SET_CURRENT_BOOK(state: LibraryModuleState, book: Book) {
+      console.log(book)
       state.selectedBook = book
     },
     RESET_LIBRARY(state: LibraryModuleState) {
@@ -23,7 +24,6 @@ const LibraryModule = {
       context.commit('SET_BOOKS', booksList)
     },
     setCurrentBook(context: any, currentBook: Book) {
-      console.log(currentBook)
       context.commit('SET_CURRENT_BOOK', currentBook)
     },
   },

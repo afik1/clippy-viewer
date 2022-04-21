@@ -26,7 +26,7 @@ const parseDetails = (details: string): ClippingDetails => {
   detailsArray[2] = detailsArray[2].replace(' Added on ', '')
 
   return {
-    date: detailsArray[2],
+    date: new Date(detailsArray[2]),
     page: detailsArray[0],
     rows: detailsArray[1],
   } as ClippingDetails

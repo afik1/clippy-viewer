@@ -24,12 +24,12 @@ export default defineComponent({
         {
           routeTitle: 'Your Library',
           routeName: 'Library',
-          routeIcon: 'library-icon.svg',
+          routeIcon: 'home.svg',
         },
         {
           routeTitle: 'About Page',
           routeName: 'About',
-          routeIcon: 'about-icon.svg',
+          routeIcon: 'about.svg',
         },
       ],
     }
@@ -51,8 +51,8 @@ export default defineComponent({
   top: 0;
   z-index: 100;
   overflow-x: hidden;
-  padding: 5rem 1rem 1rem;
-  background-color: #457b9d;
+  padding: 5rem 0 0 0;
+  background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,26 +65,28 @@ export default defineComponent({
   justify-content: center;
   justify-content: space-between;
   margin-top: 2rem;
-  border: 3px solid whitesmoke;
-  border-radius: 6px;
+  border: 1px solid #555;
+  padding: 0 0.5rem 0 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #555;
+}
+
+.link:hover {
+  color: black;
+  border-color: black;
+  background-color: lightgray;
 }
 
 .link-text {
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 500;
   display: block;
-  cursor: pointer;
-  color: whitesmoke;
   text-align: center;
 }
 
-.link-text:hover {
-  color: black;
-}
-
 .link-icon {
-  width: 3.2rem;
-  fill: whitesmoke;
+  width: 2.3rem;
 }
 </style>

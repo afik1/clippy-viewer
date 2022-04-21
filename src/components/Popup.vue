@@ -70,6 +70,8 @@ export default defineComponent({
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 .close-btn {
@@ -90,7 +92,8 @@ export default defineComponent({
   position: relative;
   padding: 3rem 2rem 3rem 2rem;
   font-size: 2.8rem;
-  line-height: 1.15;
+  line-height: 1.3;
+  word-spacing: 0.1rem;
   font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;

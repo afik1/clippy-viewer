@@ -74,12 +74,17 @@ export default defineComponent({
 .tool-bar {
   display: flex;
   justify-content: space-between;
+  width: 100%;
   height: fit-content;
-  padding: 1.5rem 1rem 1.5rem 0;
+  padding: 1.5rem 2rem 1.5rem 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   background-color: lightgray;
 }
 
 .header {
+  display: flex;
+  align-items: center;
   font-size: 3.2rem;
   font-weight: 700;
   color: #555;
@@ -87,6 +92,7 @@ export default defineComponent({
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  height: 4rem;
 }
 
 .container {
@@ -99,7 +105,7 @@ export default defineComponent({
 }
 
 .clippings {
-  background-color: lightslategray;
+  background-color: #ebecf0;
   width: auto;
   height: 100%;
   min-height: 0;
@@ -133,6 +139,7 @@ export default defineComponent({
 
 .clippings::-webkit-scrollbar-track {
   background: rgb(122, 122, 122);
+  border-bottom-right-radius: 6px;
 }
 
 .clippings::-webkit-scrollbar-thumb {

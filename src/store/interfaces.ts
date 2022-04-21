@@ -9,7 +9,7 @@ export interface Clipping {
 }
 
 export interface ClippingDetails {
-  date: string
+  date: Date
   page: string
   rows: string
 }
