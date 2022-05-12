@@ -81,7 +81,7 @@ export default defineComponent({
 .modal-header {
   position: relative;
   border-bottom: 1px solid #eeeeee;
-  color: #4aae9b;
+  color: #555;
   display: flex;
   flex-direction: row;
   align-items: center;

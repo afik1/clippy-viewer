@@ -35,3 +35,12 @@ export interface LibraryModuleState {
   selectedBook: Book
   booksList: Array<Book>
 }
+
+export enum SortTypes {
+  DATE,
+}
+
+export interface SortParam {
+  type: SortTypes
+  isDirectionUp: boolean
+}

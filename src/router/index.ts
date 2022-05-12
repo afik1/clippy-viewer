@@ -3,7 +3,7 @@ import OpeningScreen from '@/views/OpeningScreen.vue'
 import Library from '@/views/Library.vue'
 import ViewClippings from '@/views/Clippings.vue'
 import store from '@/store/index'
-// import About from '../views/About.vue'
+import About from '../views/About.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,11 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'ViewClippings',
     component: ViewClippings,
   },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: About,
-  // }
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
+  }
 ]
 
 const router = createRouter({

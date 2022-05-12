@@ -7,14 +7,22 @@
       <div class="tool-bar-actions">
         <IconButton
           :color="'whitesmoke'"
-          :iconName="iconNames[currentViewIndex]"
+          :iconName="isSortAscending ? 'up-arrow' : 'down-arrow'"
+          @click="isSortAscending = !isSortAscending"
+        ></IconButton>
+        <IconButton
+          :color="'whitesmoke'"
+          :iconName="gridIconNames[currentViewIndex]"
           @click="changeGrid()"
         ></IconButton>
+        <!-- <select class="form-control" @change="changeJobTitle($event)">
+          <option :value="sortTypes.DATE" selected disabled>Date</option>
+        </select> -->
       </div>
     </div>
-    <div :class="[iconNames[currentViewIndex], 'clippings']">
+    <div :class="[gridIconNames[currentViewIndex], 'clippings']">
       <Clipping
-        v-for="(clipping, key) in selectedBook.clippings"
+        v-for="(clipping, key) in sortedClippings"
         :key="key"
         :clipping="clipping"
         @click="displayClipping(clipping.text)"
@@ -32,7 +40,8 @@ import { defineComponent } from 'vue'
 import { mapState } from 'vuex'
 import Clipping from '@/components/Clipping.vue'
 import IconButton from '@/components/IconButton.vue'
-import Popup from '../components/Popup.vue'
+import Popup from '@/components/Popup.vue'
+import { Clipping as ClippingInterface, SortTypes } from '@/store/interfaces'
 
 export default defineComponent({
   components: {
@@ -42,10 +51,12 @@ export default defineComponent({
   },
   data() {
     return {
-      iconNames: ['grid-1', 'grid-2', 'grid-3'],
+      gridIconNames: ['grid-1', 'grid-2', 'grid-3'],
       currentViewIndex: 2,
       isModalVisible: false,
       currentClipping: '',
+      isSortAscending: true,
+      // sortType: SortTypes,
     }
   },
   methods: {
@@ -53,6 +64,9 @@ export default defineComponent({
       if (this.currentViewIndex === 2) this.currentViewIndex = 0
       else this.currentViewIndex = this.currentViewIndex + 1
     },
+    // changeSortType(event: any) {
+    //   this.sortType = event.target.options[event.target.options.selectedIndex].text
+    // },
     displayClipping(text: string) {
       this.currentClipping = text
       this.showPopup()
@@ -66,6 +80,33 @@ export default defineComponent({
   },
   computed: {
     ...mapState('library', ['selectedBook']),
+    sortedClippings(): ClippingInterface[] {
+      let sortedClippings = this.selectedBook.clippings
+
+      // currently only by date so no select menu
+      // switch (this.sortType) {
+      //   case sortTypes.DATE:
+      //     sortedClippings = sortedClippings.sort(
+      //       (a: ClippingInterface, b: ClippingInterface) =>
+      //         a.details.date.valueOf() - b.details.date.valueOf()
+      //     )
+      //     break
+      // }
+
+      if (this.isSortAscending) {
+        return sortedClippings.sort(
+          (a: ClippingInterface, b: ClippingInterface) =>
+            a.details.date.valueOf() - b.details.date.valueOf()
+        )
+      } else {
+        return sortedClippings
+          .sort(
+            (a: ClippingInterface, b: ClippingInterface) =>
+              a.details.date.valueOf() - b.details.date.valueOf()
+          )
+          .reverse()
+      }
+    },
   },
 })
 </script>
